@@ -5,9 +5,10 @@ const nextQuote = document.getElementById('nextQuote').addEventListener('click',
 let allData = [];
 
 async function fetchAsync() {
-    const r = Math.floor(Math.random() * 1643);
+    
     const response = await fetch(api);
     const data = await response.json();
+    const r = await Math.floor(Math.random() * data.length);
     getContent.innerHTML = await data[r].text + ' -' + data[r].author;
 
     allData = data;
@@ -16,7 +17,7 @@ async function fetchAsync() {
 fetchAsync();
 
 function next() {
-    const r = Math.floor(Math.random() * 1643);
+    const r = Math.floor(Math.random() * allData.length);
     getContent.innerHTML = allData[r].text + ' -' + allData[r].author;
 
 }
